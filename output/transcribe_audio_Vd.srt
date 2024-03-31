@@ -1,0 +1,216 @@
+1
+00:00:00,000 --> 00:00:07,000
+This short video highlights features of Envivo Qualitative Data Analysis Software.
+
+2
+00:00:07,000 --> 00:00:16,000
+Envivo is an analysis software for coding or tagging qualitative data with themes or codes.
+
+3
+00:00:16,000 --> 00:00:21,000
+Qualitative researchers are often analyzing text-based sources,
+
+4
+00:00:21,000 --> 00:00:27,000
+and listed here are some examples of text-based sources that Envivo can be used to analyze.
+
+5
+00:00:27,000 --> 00:00:34,000
+It can also be used to analyze audio-visual materials such as these listed below.
+
+6
+00:00:34,000 --> 00:00:46,000
+So Donia describes a code as a short word or phrase that symbolically assigns a summative, salient, essence capturing,
+
+7
+00:00:46,000 --> 00:00:52,000
+and or evocative attribute for a portion of language-based or visual data.
+
+8
+00:00:52,000 --> 00:00:59,000
+In Envivo, you use the node feature to create codes.
+
+9
+00:00:59,000 --> 00:01:08,000
+This excerpt from a coding overview video notes that coding is both a means of dividing your data into manageable segments,
+
+10
+00:01:08,000 --> 00:01:14,000
+as well as a means of allowing you quick access to the relevant data when you need it.
+
+11
+00:01:14,000 --> 00:01:19,000
+And I drew the red boxes around manageable and quick access,
+
+12
+00:01:19,000 --> 00:01:25,000
+because I think that's what researchers want most out of using a qualitative data analysis software.
+
+13
+00:01:25,000 --> 00:01:28,000
+To make the coding process manageable,
+
+14
+00:01:28,000 --> 00:01:32,000
+and to facilitate quick access to their data.
+
+15
+00:01:32,000 --> 00:01:38,000
+So if you think about manually coding textual data, this is what that might look like.
+
+16
+00:01:38,000 --> 00:01:43,000
+You pronounce the data, read it, and then underline relevant passages of text,
+
+17
+00:01:43,000 --> 00:01:48,000
+and then code or tag them with a theme by writing the codes in the margins.
+
+18
+00:01:48,000 --> 00:01:55,000
+And this might be fairly manageable and allow you quick access to your data if you have smaller projects.
+
+19
+00:01:55,000 --> 00:02:00,000
+But as projects grow or the complexity of your coding increases,
+
+20
+00:02:00,000 --> 00:02:07,000
+you might find yourself graduating to trying to use different colors of highlighters for different codes.
+
+21
+00:02:07,000 --> 00:02:12,000
+But then you run out of colors, or you soak your paper with wet highlighter,
+
+22
+00:02:12,000 --> 00:02:18,000
+and how do you manage one passage of text that you want to code at multiple codes?
+
+23
+00:02:18,000 --> 00:02:23,000
+Or you decide you'll have different colors of Post-it notes for each node,
+
+24
+00:02:23,000 --> 00:02:26,000
+to stick on your piles of paper.
+
+25
+00:02:26,000 --> 00:02:30,000
+Again, finite colors may become a problem.
+
+26
+00:02:30,000 --> 00:02:36,000
+And what if one falls off on the floor and you don't remember where it goes?
+
+27
+00:02:37,000 --> 00:02:41,000
+And before you know it, you're feeling a little like this.
+
+28
+00:02:41,000 --> 00:02:47,000
+And what's happened to make your data analysis manageable and allowing quick access to your data?
+
+29
+00:02:47,000 --> 00:02:56,000
+This is where using an analysis software like Envivo begins to look very appealing.
+
+30
+00:02:56,000 --> 00:03:04,000
+I'm going to use some screenshots from Envivo to demonstrate the utility of using a qualitative data analysis software.
+
+31
+00:03:04,000 --> 00:03:11,000
+First, you have one Envivo project file into which you import all of your separate data source files.
+
+32
+00:03:11,000 --> 00:03:18,000
+To open a data source, you just double-click it.
+
+33
+00:03:18,000 --> 00:03:25,000
+Then you can start reading your data and highlight an interesting or relevant passage of text.
+
+34
+00:03:25,000 --> 00:03:28,000
+Right-click it and select code.
+
+35
+00:03:29,000 --> 00:03:37,000
+Then either code it at one or more few nodes you previously created or code it at a brand new node.
+
+36
+00:03:37,000 --> 00:03:41,000
+And this is pretty much analogous to the process of manually coding.
+
+37
+00:03:41,000 --> 00:03:47,000
+In other words, Envivo is not reading your data and doing the coding for you.
+
+38
+00:03:47,000 --> 00:03:57,000
+You still have to read your data and use your research questions or analytical framework to guide what segments of the data are relevant and should be.
+
+39
+00:03:58,000 --> 00:04:11,000
+As you do your coding, you are developing a coding scheme or coding tree that reflects the codes or theme nodes you've created and coded for,
+
+40
+00:04:11,000 --> 00:04:26,000
+but also represents how many data files you've coded at a given node and how many individual passages of text or references in Envivo that you've coded at that given node.
+
+41
+00:04:26,000 --> 00:04:36,000
+For example, for the node of no limits to access to information, I coded 11 of my total 12 data sources at least once at that code.
+
+42
+00:04:36,000 --> 00:04:44,000
+And I coded 75 individual segments of text within those 11 sources at that code.
+
+43
+00:04:44,000 --> 00:04:58,000
+Then if I want to see the 75 individual segments of text, I can just double-click on the node to open a brief view of those individual passages of text.
+
+44
+00:04:58,000 --> 00:05:05,000
+This view shows me the individual passages of text divided out by the data source.
+
+45
+00:05:05,000 --> 00:05:16,000
+So I can see for student 1, ID as S1, I coded 5 passages of text at the theme node of no limits to access to information.
+
+46
+00:05:16,000 --> 00:05:26,000
+And if I want to see the passages of text within the context of the source, I can click the hot linked source title.
+
+47
+00:05:27,000 --> 00:05:35,000
+It opens the source and highlights the passages of text that I coded at no limits to access to information.
+
+48
+00:05:35,000 --> 00:05:46,000
+And if I turn the coding stripes feature on, I can also see that some of those passages of text were coded at other nodes, such as social justice.
+
+49
+00:05:47,000 --> 00:06:01,000
+These features alone demonstrate how Envivo makes coding and analyzing, qualitative data, much more manageable, and facilitates quick access to the relevant data.
+
+50
+00:06:01,000 --> 00:06:03,000
+And there's so much more.
+
+51
+00:06:03,000 --> 00:06:15,000
+For example, you can use word frequency queries to explore the data and generate word cloud visualizations for use in presentations or publications.
+
+52
+00:06:15,000 --> 00:06:27,000
+You can create other visualizations, such as comparison diagrams, to visually explore convergence and divergence in your data sources or coding themes.
+
+53
+00:06:27,000 --> 00:06:44,000
+And you can define attributes about your data sources and then do comparisons of your coding to examine relationships and patterns by these attributes, for example using the cross tabs query feature pictured here.
+
+54
+00:06:44,000 --> 00:07:10,000
+In conclusion, these features and others in Envivo qualitative data analysis software can help qualitative researchers be more organized, efficient, and thorough in their analyses and also help them document their analysis process for transparency and replication purposes in ways that manual analyses tend to fall short.
+

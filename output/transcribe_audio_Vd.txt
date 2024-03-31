@@ -1,0 +1,54 @@
+This short video highlights features of Envivo Qualitative Data Analysis Software.
+Envivo is an analysis software for coding or tagging qualitative data with themes or codes.
+Qualitative researchers are often analyzing text-based sources,
+and listed here are some examples of text-based sources that Envivo can be used to analyze.
+It can also be used to analyze audio-visual materials such as these listed below.
+So Donia describes a code as a short word or phrase that symbolically assigns a summative, salient, essence capturing,
+and or evocative attribute for a portion of language-based or visual data.
+In Envivo, you use the node feature to create codes.
+This excerpt from a coding overview video notes that coding is both a means of dividing your data into manageable segments,
+as well as a means of allowing you quick access to the relevant data when you need it.
+And I drew the red boxes around manageable and quick access,
+because I think that's what researchers want most out of using a qualitative data analysis software.
+To make the coding process manageable,
+and to facilitate quick access to their data.
+So if you think about manually coding textual data, this is what that might look like.
+You pronounce the data, read it, and then underline relevant passages of text,
+and then code or tag them with a theme by writing the codes in the margins.
+And this might be fairly manageable and allow you quick access to your data if you have smaller projects.
+But as projects grow or the complexity of your coding increases,
+you might find yourself graduating to trying to use different colors of highlighters for different codes.
+But then you run out of colors, or you soak your paper with wet highlighter,
+and how do you manage one passage of text that you want to code at multiple codes?
+Or you decide you'll have different colors of Post-it notes for each node,
+to stick on your piles of paper.
+Again, finite colors may become a problem.
+And what if one falls off on the floor and you don't remember where it goes?
+And before you know it, you're feeling a little like this.
+And what's happened to make your data analysis manageable and allowing quick access to your data?
+This is where using an analysis software like Envivo begins to look very appealing.
+I'm going to use some screenshots from Envivo to demonstrate the utility of using a qualitative data analysis software.
+First, you have one Envivo project file into which you import all of your separate data source files.
+To open a data source, you just double-click it.
+Then you can start reading your data and highlight an interesting or relevant passage of text.
+Right-click it and select code.
+Then either code it at one or more few nodes you previously created or code it at a brand new node.
+And this is pretty much analogous to the process of manually coding.
+In other words, Envivo is not reading your data and doing the coding for you.
+You still have to read your data and use your research questions or analytical framework to guide what segments of the data are relevant and should be.
+As you do your coding, you are developing a coding scheme or coding tree that reflects the codes or theme nodes you've created and coded for,
+but also represents how many data files you've coded at a given node and how many individual passages of text or references in Envivo that you've coded at that given node.
+For example, for the node of no limits to access to information, I coded 11 of my total 12 data sources at least once at that code.
+And I coded 75 individual segments of text within those 11 sources at that code.
+Then if I want to see the 75 individual segments of text, I can just double-click on the node to open a brief view of those individual passages of text.
+This view shows me the individual passages of text divided out by the data source.
+So I can see for student 1, ID as S1, I coded 5 passages of text at the theme node of no limits to access to information.
+And if I want to see the passages of text within the context of the source, I can click the hot linked source title.
+It opens the source and highlights the passages of text that I coded at no limits to access to information.
+And if I turn the coding stripes feature on, I can also see that some of those passages of text were coded at other nodes, such as social justice.
+These features alone demonstrate how Envivo makes coding and analyzing, qualitative data, much more manageable, and facilitates quick access to the relevant data.
+And there's so much more.
+For example, you can use word frequency queries to explore the data and generate word cloud visualizations for use in presentations or publications.
+You can create other visualizations, such as comparison diagrams, to visually explore convergence and divergence in your data sources or coding themes.
+And you can define attributes about your data sources and then do comparisons of your coding to examine relationships and patterns by these attributes, for example using the cross tabs query feature pictured here.
+In conclusion, these features and others in Envivo qualitative data analysis software can help qualitative researchers be more organized, efficient, and thorough in their analyses and also help them document their analysis process for transparency and replication purposes in ways that manual analyses tend to fall short.
