@@ -1,0 +1,300 @@
+start	end	text
+0	6000	This video begins a two video journey over the process of learning about how we can achieve
+6000	13000	Locate queries in big O of R space in a run length compressed full text index
+13000	16500	So we've already talked about the count query that's not the subject for today
+16500	23000	Not the main subject for today today. Today our subject really is the locate query and why is it that we're able to achieve
+24000	29960	Locate queries efficiently in big O of R space and we'll get really specific about what
+29960	36960	Is achievable in terms of the exact space and time bounds that we can do for Locate queries
+37960	44960	So let's get started by reminding ourselves about how we have been doing locate queries even in the non
+45960	48960	Run length compress setting so back when we talked about the
+49960	55960	You know standard FM index without run length compression we had a little bit of a trick
+55960	59960	For how we answered locate queries first of all we said
+60960	62960	Answers to locate queries
+62960	64960	Can be pre-computed
+64960	66960	Right so if I do my
+66960	74960	Interated backward search procedure and I my pattern is say the string ABA and so at the end of my iterated backward search procedure
+74960	78960	I know that these are the rows that begin with ABA
+78960	87960	Then we could imagine another array parallel to the rows with our matrix that simply tells us
+88960	93960	You know which permutation or which rotation that is in each row of the rows with our matrix
+93960	100960	And we said this is the suffix array. This is the exact same thing as the suffix array discussed in other videos
+101960	109960	So if we were to pre-comput that answer for every row we would have computed the suffix array of the text
+110960	113960	We don't want the whole suffix array
+113960	117960	That's too big. I mean the good news is that the suffix array allows us
+117960	123960	For every one of these pattern matches to immediately look up its offset with respect to T so that's great
+123960	129960	We got a good benefit. It's easy to query because everything is a direct look up in the suffix array
+129960	136960	However, it's too big because we need n integers to store it where n is the total length of the text
+136960	140960	So in other words, there's nothing about the suffix array by itself
+140960	147960	Before we do before we do clever things, there's nothing about the suffix array that allows us to take advantage of the
+147960	151960	Run-length compressibility of a repetitive text
+152960	158960	We didn't even, we weren't even satisfied with n integers before when we were talking about the FM index
+158960	160960	We came up with the idea of
+161960	166960	Sub-sampling the suffix array so that instead of keeping all the elements of the suffix array
+166960	171960	Let's say we just kept some of them. So for example, let's say we kept the even ones
+171960	180960	So if we kept the even elements of the suffix array then when it came time to look up the offset of this pattern match of ABA
+180960	185960	We would look over in the corresponding element of our sampled suffix array somehow
+185960	189960	This is with some associative, some associative data structure over here
+189960	201960	And we'd see, oh we kept a note about what suffix array offset was present for this row of the rows
+201960	203960	Wheeler matrix so we'd get offset zero
+203960	207960	But then we'd go to look up this one and we find it is not there
+207960	211960	And now we have to do something to figure out well, okay fine
+211960	215960	So we didn't keep that one but we still have to answer the locate query so what do we do?
+215960	218960	We can do an LF mapping, right?
+218960	222960	So we find our self here in the row that ends with this A
+222960	228960	So that's the A of rank 1, right? So I suppose that's A, rank 0 as A, rank 1, 2, 3
+228960	234960	So we're in the row that ends in the A of rank 1 so we jump to the row that begins with the row the A of rank 1
+234960	235960	That's this row
+235960	245960	We've now invoked to the LF mapping which means that what we've done with respect to the text T is we've moved to the left by one character
+245960	253960	Okay, and then we go look in our associative data structure again and behold we have kept that element
+253960	258960	So we know that that row of the rows we learn matrix is at offset two with respect to the text
+258960	266960	And therefore we know that in the row we began our search that row is at offset three with respect to the text
+266960	272960	Right? Because we moved to the left by one then found that that rotation was at offset two
+272960	275960	So the original rotation was at offset three
+275960	280960	Okay, and this principle worked regardless of what the sampling interval was right?
+281960	285960	So we could have done even so only we could have done multiples of four only for example
+285960	288960	So here I've kept only zero and four is the offsets and the suffix array
+288960	292960	That's okay even when it comes time to look up this offset here
+292960	298960	We just repeatedly invoke the LF mapping until we arrive at a row of the rows
+298960	308960	We learn matrix for which we've kept the suffix a suffix array sample and then add the number of steps we had to take to get to that row
+309960	317960	So that general principle we're going to keep as you'll see we're going to sort of generally speaking keep the principle that we will use sampling
+317960	324960	We will have to be clever about the interval we use with respect to sampling but once we have done this sampling
+324960	329960	We'll be able to answer queries within reasonable time budgets
+329960	333960	And we only had to keep a sample of the suffix array entries
+334960	336960	So to summarize what we've been doing
+336960	340960	Alright, we've been sampling, we saw this already
+340960	352960	If we store a sample such that we are taking suffix array entries at multiples of some constant C like in this example we took multiples of four
+352960	357960	Then the maximum number of LF steps we're going to need to take to get to the next
+357960	362960	To get to the two a row for which we kept the suffix array sample is bounded by C
+363960	376960	The maximum number of times we'll have to invoke the LF mapping is really C minus one before we get to a row before we are guaranteed to have got to a row that has a saved suffix array element
+376960	380960	Okay, so if we pick some constant C and let that be our interval
+380960	383960	Then we haven't really affected the big O bound, right?
+383960	389960	C is not some function of n, it's just some constant, so big O of n divided by C
+389960	393960	If that's the number of integers we have to store at the end of the day, it's still big O of n, right?
+393960	396960	Still growing linearly with n because C is a constant.
+396960	401960	We don't have to pick that to be a constant, we could pick it to be a function of n
+401960	406960	We could say for example that the interval between these suffix array samples is square root of n
+406960	416960	And that therefore means that the number of times we have to invoke the LF mapping before we are guaranteed to get to a suffix array sample is n over square root of n
+416960	420960	In other words, square root of n, we have this choice.
+420960	433960	Even that function of n though is a large price to pay if our text is very repetitive and we know or hope at least that we could take advantage of that repetitiveness, right?
+433960	441960	This doesn't really take advantage of repetitiveness in any way, even if we try to make our sampling interval be a function of n
+441960	455960	What we would prefer strongly prefer what we need really for repetitive texts is something that depends on R and does not depend on n or only mildly depends on n
+455960	463960	Okay, so for our repetitive text we want to be able to answer low key queries but in big O of R space
+464960	472960	If we can do it and if these queries are still efficient after we manage to reduce the space footprint in this way
+472960	478960	So before we begin this journey into discussing how to accomplish these big O of R low key queries
+478960	485960	Let me take a couple of a sides to talk through some concepts that will be useful to us later
+485960	497960	So first of all, here's a concept that we already intuitively know because it's wrapped up with how we just were describing the process for how to resolve low key queries when we keep a sample of the suffix array
+497960	505960	Right intuitively we know there are sort of these two separate spaces, two separate almost like coordinate systems
+505960	514960	One of them is the text T, so just imagine this is the text T I've oriented it sort of top to bottom so the text you can imagine is spelled out top to bottom
+514960	522960	So there's the text T and when we live in the text we think about offsets with respect to the text
+522960	528960	We usually use I as our index when we do offsets with respect to the text T
+528960	537960	So that's sort of T space, right when we're talking about T space we're talking about thinking in terms of offsets with respect to the text
+538960	548960	Then over here on the other side you can imagine we've built the bro's wheeler matrix we've got our bro's wheeler transform everything in that space is now in this new order
+548960	559960	Right the bro's wheeler transform promotes the characters of T according to the alphabetical order of their right context so now everything is in a new space in a way
+559960	564960	In a new order where that order is governed by the alphabetical order of these right context
+564960	572960	And I'm going to call this for the purpose of this talk I'll just call it lex space lex short for lex a graphical sort a little bit like
+572960	581960	You know alphabetically ordered space so on the one hand we have T and we think in terms of offsets with respect to T
+582960	597960	And on the other hand we have the bro's wheeler matrix and we think in terms of in essence ranks right like the ranks of suffixes that are the right context of characters within T
+597960	610960	T space lex space and we have ways of moving in these spaces right these are the sort of fundamental ways that we move around we just discussed one of them which was the LF mapping
+610960	632960	Right there's also a way of translating from one space's coordinates to the other when we are doing low key queries we are trying to do a translation from the lex space coordinates to the T space coordinates and that is what the suffix array does right so you can think of the suffix array as
+632960	646960	one way of encoding the function that gets us from lex space back to T space we could go the other way to in which case we use another structure what which is often called the inverse suffix array
+646960	659960	I'll denote it with SA with a negative one in the superscript sometimes you'll see it referred to as ISA for inverse suffix array right so these two things are sort of the functions that get us back and forth
+660960	671960	In terms of movement though we've been talking about the FM sorry the LF mapping the LF mapping is something that if we have a coordinate in lex space let's call it Q
+671960	675960	Let's say we're at a certain coordinate in lex space
+675960	684960	In Voking the LF mapping takes us to another coordinate in lex space right it takes us to another place with respect to the boros with a matrix right the LF mapping
+684960	691960	Very familiar with the LF mapping procedure right it's all about jump to the right section jump to the right character of the rank within that section
+691960	703960	It's jumping to another place with respect to lex space it's not a predictable place right like we're not necessarily when we use the LF mapping or not necessarily going
+704960	714960	Earlier or later or by one or by ten right there it's not really predictable we're going to in some sense an arbitrary new spot with respect to lex space
+714960	720960	So let's say we invoke the LF mapping on our original coordinate Q we got a new coordinate Q prime
+721960	737960	We could iterate we could run the LF mapping again on our new coordinate Q prime we get a new new coordinate Q double prime again that movement is not really predictable in terms of where the new Q prime prime is going to land with respect to lex space it just goes somewhere else
+738960	745960	And we can iterate again so these are this roughly what three iterations of the LF mapping might look like with respect to lex space
+746960	759960	What's interesting is to bring in the idea of how these movements using the LF mapping and lex space are reflected in T space and we already know that they represent movements to the left by one
+760960	775960	Right, that's what this sort of equation is denoting the suffix array entry at the LF of Q is equal to the suffix array entry at Q minus one it right the suffix array being the way we translate from lex to T coordinates
+776960	780960	So it's a little bit like the LF mapping moves in lex space in a way that corresponds
+781960	787960	So an LF step in lex space moves in a way that corresponds to a movement to the left by one in T space
+788960	803960	So one two three pictured here on the slide look a bit like this one two three if pictured on in T space right we're just moving to the left by one or in this picture I guess we're moving up by one because I arranged T vertically
+804960	813960	Okay, so there is from LF movement in lex space there's a corresponding predictable
+814960	824960	incremental step movement in T space that's just the nature of the LF mapping that's what it's doing and that's also why it's useful to us here with our sampling procedure
+825960	834960	We need to know if we iterate the LF mapping by one it means we move to the left by one with respect to T so if we've done anything in terms of keeping
+835960	851960	Hints for ourselves in the coordinates of T you know space to certainly the fact that we're moving to the left by one with respect to T is quite nice because we can create guarantees that it won't take too many steps before we get to a destination
+853960	862960	As an aside aside there's another function not called LF it's called V so for some reason we use a Greek symbol for this function the symbol V
+863960	867960	V you can think of as just being another function where instead of being
+868960	877960	Potentially large arbitrary movements in lex space that correspond to predictable movements in T space you know incremental predictable movements in T space
+877960	896960	V is the opposite so V is that we are is we're jumping from place to place with respect to T and the way we are jumping is that we are jumping you know if we jump from one spot to another it's because we jumped from a spot that had a certain lexica graphical rank
+896960	909960	Who's right context had a certain lexica graphical rank to another place whose right context has the next lowest lexica graphical rank who's right context has the next lowest lexica graphical rank
+909960	923960	You can just think of it as almost the mirror image of LF it's not the inverse of LF mind you right it's not because it's not even about movement it's not it's not about the same kind of movement so it's not the inverse of LF
+923960	932960	It's in some sense a mirror image right so we're making movements in T space that correspond to predictable incremental movements in lex space
+932960	941960	Okay, but that that was just an aside I suppose it's also worth mentioning the both LF and V you can think of as having inverses
+941960	964960	Where instead of corresponding to leftward movements in the other space they correspond to rightward movements you can imagine something that undoes the LF mapping that goes backwards across the LF mapping would correspond to rightward predictable stepwise movements in T space like wise we could imagine an inverse fee function which corresponds to rightward predictable incremental movements in lex space
+965960	991960	Okay, so all of the things that we are going to do are going to correspond to movements in one space or the other and it is helpful to keep this kind of picture in mind the suffix array is the function that moves in the lex to T direction the inverse suffix array moves in the other direction the LF corresponds to predictable incremental movements in T
+992960	1017960	Okay, the final point I want to make before I start in on the to hold lemma is to do with what the LF mapping looks like when the text is repetitive when the text is repetitive the LF mapping kind of operates in a what I'll call runny way right so here's our favorite example of a repetitive text T
+1018960	1022960	Picture here here's its boros wheel of transform
+1023960	1037960	Here's the sort of F right if this is the last column of the boros wheel and matrix this is the first column and if we were to picture what the LF mapping does to the characters of a let's say let's pick a character in this case we picked R
+1038960	1064960	If we imagine what the LF mapping does to all the R's with respect to L well it maps them all on to F in a very kind of consecutive way right it's there's a lot of consecutive here right all the R's in this bunch map to a consecutive stretch of R's on the other side right with respect to the F column likewise all the R's in that second run
+1064960	1081960	Also LF map in a consecutive way so it's like the LF mapping is mapping we of course can think of it as mapping individual characters you know we can think of all the arrows that I've drawn on this slide or we can think of the LF mapping is operating on essentially a block or a run
+1081960	1090460	Of characters and so instead of all those individual arrows one way an alternate way I could represent it is to draw this whole big
+1090960	1094960	Parallelogram shape things saying this whole chunk goes to that whole chunk
+1095960	1098960	You know this whole chunk of L goes to that whole chunk of F
+1100960	1110960	When the LF mapping is running that means that what the LF mapping does to a particular character in a run and what it does to another character in the same run is kind of
+1111960	1115960	Parallel represented by these parallelograms
+1116960	1121960	Okay, I could draw all the parallelograms all together in one picture and it looks like this
+1122960	1131960	A little bit chaotic, but anyway that's in some sense of totally complete picture of what the LF mapping does for this repetitive text and it doesn't require
+1132960	1136960	In parallelograms it only requires are parallelograms
+1137960	1147960	So okay, so like I say if we focus in on the letters of one run the LF mapping is doing something kind of parallel to those to those same run letters
+1148960	1161960	And the principle that we could write down is we could say okay well if the BWT at offset Q and the BWT at offset Q plus one right so to adjacent letters in the BWT are the same letter
+1162960	1163960	If they're the same letter
+1164960	1167960	Right in other words if they're part of a run together
+1168960	1181960	Right so if two adjacent elements of the BWT are the same letter then that means the LF mapping of the first one and the LF mapping of the second one are still going to be right next to each other when they move
+1182960	1188960	Right the LF mapping of Q plus one the one on the right is equal to the LF mapping of Q the one on the left plus one
+1188960	1199960	Right go over by one and go down as the same is going down and going over by one this is true if they are the same character if they're together in the same run if they're a different characters
+1200960	1216960	Then they're not part of the same run and this bet is off right they could go to completely separate places with respect to the F column right they're going to go to different letter sections right so it's not it doesn't work if BWT of Q is not equal to BWT of Q plus one
+1217960	1223960	So two positions in the same BWT run move through the LF mapping in a parallel fashion
+1224960	1230960	Okay, these are the principles we need before we can examine this to hold lemma so now let us get started
+1231960	1236960	We are going to talk about the algorithm that achieves big of our locate queries and our algorithmic
+1237960	1241960	Concept here has two components to it
+1241960	1251960	The first component is going to be about during the backward search procedure keeping a bit of extra side information that will be important to our query
+1252960	1258960	Particularly we're going to keep this thing called a tow hold which is our ultimate goal is to know the suffix array entries for all our matches
+1259960	1264960	But a tow hold means we just know the suffix array entry for one of our matches so far
+1265960	1277960	Okay, so that's what the tow hold is we just keep track of one and then the second part of the algorithm is going to be that the tow hold is enough because from the tow hold we can do another kind of query to figure out the rest later on
+1278960	1281960	Okay, the second part of this
+1282960	1287960	Conceptual framework will have to wait for the next video, but we will tackle the first part here
+1288960	1291960	Okay, so let's do the first part and
+1291960	1293960	If I can
+1293960	1303960	Let me heart and back to we were saying that we want to keep a sample, but we want to keep an amount of suffix array information that grows with R
+1304960	1306960	So let's start with a simple
+1307960	1312960	Obvious suggestion for what we should keep what we should keep in our suffix array sample
+1313960	1320960	I'm going to suggest that what we keep in our suffix array sample are the suffix array entries that are at the beginnings of the runs
+1321960	1328960	Right a little bit light in the previous lecture when we talked about backward search in the run length compress BWT we talked about
+1329960	1336960	You know keeping one letter per run and keeping a bid vector that marks each run
+1337960	1339960	So there's so that there's one one per run
+1340960	1344960	Similarly here, I'm going to suggest keeping a suffix array sample per run
+1345960	1347960	Specifically at the heads of the runs
+1348960	1357960	So here we are we got to you. We got L when we're talking about the runs. We're talking about runs with respect to L. So let's look at L and let's imagine that for each of those runs
+1358960	1365960	We're going to store one suffix array entry per run. So the first run is that T at the very beginning it suffix array entry is 62
+1366960	1371960	I computed that elsewhere, but anyway, it's it suffix array entry is 62
+1372960	1376960	So we keep that suffix array entry boom in some sort of data structure
+1378960	1385960	We move on to the next run the next run as a run of three r. So for the first r in that run we keep it suffix array entry which is 57 boom
+1386960	1404960	Next run run of W's keep a suffix array entry next run run of O's next run run of underscores, et cetera, and so for every run I've now drawn on this slide a suffix array sample corresponding to what is the suffix array entry for the first element of that run
+1405960	1409960	Simple idea and obviously it results in
+1410960	1418960	Biggo of our integers in fact exactly our integers, right? There's one integer per run so we have exactly our integers here on the screen
+1419960	1429960	I am also going to suggest that we keep samples at run tails. So this is not all we keep. We also keep these right so now I've just drawn
+1430960	1439960	L again, but instead of highlighting the run heads, I've highlighted the run tails in some cases they're the same, right? Because some of the runs have linked the one so the head and the tail are the same
+1440960	1448960	But anyway, so there's all the suffix array samples of the run tails. I'm going to suggest we keep both the samples at the heads the samples at the tails
+1450960	1456960	And that will be part of how we can keep track of our tow hold as we do back research
+1456960	1463960	So equipped with these suffix array samples now our job is to augment the backward search procedure so that every step
+1464960	1471960	We know for one of the elements that we're tracking what its suffix array entry is and we need to be able to update that at each step
+1472960	1477960	So here's the information we have and here's what we want to do with it. We want to change our backward search procedure
+1478960	1484960	This schematic is showing the old way that we did backward search in the FM index where we would do step step step step step step step
+1485960	1495960	And then at the end we would take the range of elements that we had matched and for each of those rows we would do a separate low, low, k-query, low, k-locate, low, k-locate, low, k-locate
+1496960	1498960	To figure out what element was there
+1499960	1507960	In our new framework part of the work of doing the low, k-query is going to be wrapped up with the backward search as part of the backward search we are keeping our tow hold
+1508960	1514960	So a schematic of what we're going to do appears here we need to augment backward search so that at every step
+1515960	1521960	In addition to just knowing this range, there's sort of range and it didn't know to hear and didn't know to hear
+1522960	1529960	In addition to knowing that range we want to know for one of the elements in our range one of the elements of the BWT and our range
+1530960	1533960	We want to know its suffix array entry
+1533960	1540960	And we need this to be true at every step, at every step we want to know the suffix array entry
+1541960	1550960	Some element in our range, it actually doesn't matter which one we just need to know the suffix array entry for one of them so that later we can get the rest
+1552960	1556960	But that requires that we need some strategy
+1556960	1563960	If we know the value at one iteration we need to strategy so that we still know the value at the next iteration
+1564960	1570960	So we need to be able to update which is the element for which we know the suffix array entry and what is the suffix array entry that we know
+1571960	1573960	We need to update that at each step
+1575960	1582960	Okay, so shown here is one transition, a transition from step i to step i plus one
+1582960	1589960	If we assume that we had everything we needed in step i and other words in step i we knew some j
+1590960	1597960	In other words some offset inside our range of BWT characters for which we know the corresponding suffix array entry
+1598960	1600960	S a of j superscript i
+1601960	1603960	So in step i we have that j and say j
+1604960	1607960	And now we want to update for step i plus one
+1608960	1614960	Where our next query character right at each step we're matching longer and longer suffixes of our pattern
+1615960	1621960	So let's say as we go to step i plus one, why here is the additional character that we know
+1622960	1627960	So as we proceed into step i plus one, we update our range
+1627960	1634960	Red, I've got sp and e p standing in for what is the beginning in the end of our range so we got our new sp and our new e p
+1634960	1638960	But we need somehow to compute our new j and sa of j
+1639960	1644960	And I'm going to argue that to figure out how to do this we just need to consider two cases
+1645960	1650960	One of the cases is the case where the this character
+1650960	1659960	Is equal to the next character and p so in other words this why matches this character in the BWT
+1660960	1664960	That's case one BWT at j of i equals y
+1665960	1669960	Well handle that case on the next slide the other case of course is where they're not equal
+1670960	1675960	Right if you think of one step of backward search we have one range and then we update it to get a new range
+1676960	1681960	Some of the elements in our original range correspond to elements in this new range
+1682960	1690960	Some of the elements in our original range don't correspond to elements in this new range according to whether they matched the next character of the query
+1691960	1698960	So we're sort of splitting our discussion up into these two cases right where the row that we were tracking the row that for which we had the toehold
+1699960	1707960	Is one of the ones that survives to the next step that's case one versus case two the row that we were tracking did not survive to the next step
+1708960	1709960	And so we need to somehow
+1710960	1715960	Scramble onto another row and get a new sample in the new iteration
+1716960	1723960	Okay, but case one is the easier case case one is the case for the row that we were tracking the row for which we had a suffix array sample
+1723960	1729960	Survived the backward search procedure and it's still there in the next in the next iteration
+1731960	1740960	In other words the case where the BWT character matched the next character and our query y in that case if we want to update j and
+1741960	1745960	SA of j that's not hard because we just need to use the LF mapping
+1747960	1749960	Right the LF mapping does exactly what we need
+1750960	1759960	LF does all the work if we take the LF of j to the I we get LF of j to the I plus one we get the new row that corresponds to that same
+1760960	1764960	The correspondence to that same match that we were tracking right in other words
+1764960	1772960	We can figure out exactly which row in the new range is the one that corresponded to the old row for which we had the suffix array entry
+1773960	1782960	And the way we update the suffix array entry, SA of j is also very predictable because we just moved to the left by one with respect of the text
+1783960	1793960	So the new SA is you know the SA at of j at step I plus one is the SA at j at step I minus one because we moved to the left by one
+1794960	1796960	So that case was actually quite easy
+1797960	1804960	How do we update j and SA of j we just apply the LF mapping to j and we just subtract one from the suffix array entry easy
+1806960	1816960	So that was case one case two is the case where the row that we were tracking does not exist in our range in the next backward search step that case is a little trickier
+1817960	1819960	We have to break this one down into some sort of sub cases
+1820960	1834960	So let's take sub case case two a and let's say case two a is that not only did the element that we were tracking not match the next character in the pattern but none of the characters in our whole range
+1835960	1839960	Matched the next character in the pattern well that case is actually kind of
+1840960	1848960	Easy in the sense that maybe like vacuously easy I guess in the sense that our next range will be empty and our search will have ended and there will be a
+1849960	1860960	Not be any matches right so there's actually no more work to do we failed to match the pattern there's no locate queries to do so that's case two a so that's the case where none of the characters in our range
+1861960	1870960	Managed to match the next character in the pattern but case two b which is much more interesting is the case where our range did have some characters that matched
+1871960	1877960	The next character in the pattern is just that the particular row that we were tracking failed to match the next character in the pattern
+1878960	1884960	The row that we were tracking failed to match but some other rows in our range do match the next
+1885960	1893960	Character in the pattern so that's case two b so what are we doing the case of case two b well let's observe that in case two b
+1894960	1906960	What we're saying about the BWT characters in our range is that some of them do match the next character in the pattern p which we called why so some of them do match why some of them don't
+1907960	1912960	So if some of them do match why in some of them don't they might be arranged let's say in a
+1913960	1927960	Configuration that looks like this so there's some wise and some non-wise in that range right so the I've used red to denote the wise or you know maybe it doesn't look exactly like that
+1927960	1934960	Maybe it sort of looks like this where there's some wise at the beginning and then some non-wise after that or maybe it looks like this where there's a y at the end
+1934960	1946960	Regardless however it looks we can guarantee something right there's a guarantee that somewhere in there there's a runhead or a run tail for why
+1947960	1957960	There must be because if there's a mix of characters and only some of them are why then there has to be somewhere in there a runhead or a run tail for a run up wise
+1958960	1970960	Okay, so if we had some way of quickly figuring out where that runhead or run tail was then we could with those suffix array samples that we kept because we kept a sample at every runhead and every run tail
+1970960	1982960	We could sort of manage to move to that row like we'll say okay, well, that row is the one that I want to pick as the one that I'm tracking so the row that I was tracking it
+1982960	1991960	Fell off it no longer matches, but I can scramble to a different row that does manage to match the query and for which I do again know the suffix array sample
+1992960	1998960	Okay, so we know that somewhere in this stretch of BWT characters there has to be a run of wise
+1999960	2004960	There has to be a part of a run of wise such that we have a runhead or a run tail
+2005960	2010960	So we're going to look up the corresponding suffix array entry from our data structure
+2010960	2018960	That's the idea we have to go a little bit more specific now about what the data structure is such that we can do that look up
+2019960	2028960	It's going to look kind of similar to the predecessor data structure that we already talked about from the previous video, but we still need to get a little bit more specific
+2029960	2038960	So how exactly do we look up what this new suffix array entry is that we should use given that we know somewhere in there somewhere in that BWT range
+2038960	2044960	There is a run of wise and we and there is in fact a runhead or a run tail of a run of wise
+2045960	2054960	Okay, so remember our discussion of the predecessor structure we use this in the previous video to accomplish part of our run length count query
+2055960	2063960	Backward search procedure, you know we reviewed that there is a way if the bit vector that marks the run heads is sparse
+2063960	2072960	Then there are ways that we can represent and query it in a way that keep the space requirement to big of our and don't really break the bank
+2073960	2083960	Don't really use a whole lot of time and we picked one very simple way to explain it first before we talked about the more complicated way to do it
+2084960	2095960	And the simple way involved building this parallel this array here called S1 which has the answers to all possible select queries this turned out to be a good way of doing predecessor queries
+2096960	2102960	And if we want to not only do predecessor queries right we not only want to be able to jump to the previous
+2102960	2113960	Let's say runhead or tail with respect to the BWT if we also want to associate something associate some data with that runhead or tail
+2114960	2121960	That's actually not so hard to add into this picture so we have our array S1 with our answers to all the select queries
+2121960	2131960	And idea would be if we went to associate values with those answers to those select queries which might correspond to the run heads and tails
+2132960	2138960	We could store another array parallel to S1 right so for example if this was an array of
+2139960	2143960	Suffix array samples we might call it SSA for sample suffix array
+2143960	2154960	We would just arrange that array parallel to S1 and then we contained some associated data so this is how we can associate suffix array samples with the run heads and tails
+2155960	2161960	So given that we can do this we can do it with whatever data structure supports
+2162960	2166960	These kinds of predecessor queries and as we already discussed in the previous video
+2167960	2172960	That simple idea that was on the previous slide. Yes, that will work, but there's also literature that shows more
+2173960	2180960	Maybe more efficient ways to do it including this blue you know this bit here the predecessor data structure that we used previously that achieved
+2181960	2191960	Log log and over our time in over our space we can essentially use that same data structure here to allow us to do these predecessor queries on the
+2191960	2202960	Run heads and tails and to retrieve that associated bit of data which is the suffix array sample at that run header tail
+2203960	2211960	There's just one more detail which is that when we do this query we're not just doing it on all the run heads and tails
+2211960	2217960	We actually are doing it with respect to a specific alphabet character right like in the example I showed before
+2218960	2224960	We were just interested in jumping to the header tail of any run in the range
+2224960	2228960	We were interested in jumping to the header tail of a Y run
+2228960	2234960	So we need some way to be able to do this query specifically for particular alphabet characters
+2234960	2242960	Right, so like for example if our alphabet consisted of a and b and we wanted to be able to do predecessor queries and get associated data
+2242960	2248960	But we wanted to be able to do it separately for a run heads and tails and b run heads and tails
+2249960	2257960	Then we might do it with a data structure that looks like this where this is the structure that marks where the heads and tails are of the a runs
+2257960	2263960	Right, so here's an a tail here here's an a head and tail so we put him one here
+2263960	2278960	And then over here we have a sort of suffix array sample array so that if you know the rank of this one you can then go ahead and look up the associated value which might be the suffix array sample
+2278960	2282960	We could do this for a so that we can do predecessor queries like this
+2282960	2291960	Okay, let's look for previous a boom and let's also look up the associated suffix array sample boom we can do that for a we could also do it for b
+2292960	2305960	Right, so we need a data structure that decides just being a predecessor structure it manages to do this in a way that is conditioned on or stratified by the alphabet characters to
+2305960	2312960	Luckily we can do this with the exact same structure that I that I mentioned on the previous slide it brings in another little
+2312960	2322960	little factor of sigma it sort of goes in the middle there so it's a log log sigma plus and over are time query if we do
+2322960	2332960	Stratify this data structure by the alphabet still that's a minor price to pay and then the actual space usage hasn't changed it's still big over
+2333960	2341960	So at the end of the day we store a structure that looks maybe notionally like this we can see what I've done here is for each of the alphabet characters
+2341960	2350960	I have a sparse representation of where all the run heads and tails for characters for runs of that character occur
+2350960	2361960	This is sort of conceptually what we want this predecessor data structure to store and associated with all those heads and tails in this data structure are the suffix array samples
+2361960	2369960	So that are for the suffix array entries at those heads and tails so this is the data structure the only real data structure complicated data structure
+2369960	2377960	That we need to be able to maintain a to hold at every step of backward search
+2377960	2389960	So that is how we do part one the maintaining of the to hold at every step of backward search in the next video we will see how given a to hold we can go outward
+2389960	2395960	And we can figure out the locations of the rest of the matches that we are tracking over backward search

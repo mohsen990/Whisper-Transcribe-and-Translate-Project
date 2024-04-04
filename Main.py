@@ -24,7 +24,7 @@ def find_path(file_name):
 
 # Function to transcribe Audio file 
 def transcribe_audio(FilePath):
-    model = whisper.load_model("base")
+    model = whisper.load_model("tiny")
     result = model.transcribe(audio=FilePath , fp16=False)
     return result
 
